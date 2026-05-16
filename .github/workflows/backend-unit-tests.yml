@@ -28,7 +28,7 @@ jobs:
       - name: Install backend dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest pytest-cov pymongo python-dotenv flask flask-cors bson
+          pip install pytest pytest-cov pymongo python-dotenv flask flask-cors
 
       - name: Run backend unit tests
         run: |
