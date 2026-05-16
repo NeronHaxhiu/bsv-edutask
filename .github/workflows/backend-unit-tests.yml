@@ -1,0 +1,35 @@
+name: Backend unit tests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  backend-unit-tests:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: backend
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install backend dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pytest-cov pymongo python-dotenv flask flask-cors bson
+
+      - name: Run backend unit tests
+        run: |
+          python -m pytest test/demo/test_usercontroller_get_user_by_email.py -v
